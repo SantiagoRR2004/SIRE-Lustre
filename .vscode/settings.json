@@ -1,0 +1,9 @@
+{
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "/bin/bash",
+      "args": ["--rcfile", "${workspaceFolder}/v6-tools.sh"]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash"
+}

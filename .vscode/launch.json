@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Run Lustre File",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "/bin/bash",
+        "args": [
+          "-c",
+          "lv6 ${file} -n main -2c-exec"
+        ],
+        // "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}",
+        "stopAtEntry": false
+      }
+    ]
+  }
+  

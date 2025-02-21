@@ -1,0 +1,9 @@
+node EDGE(X:bool) returns (Y:bool);
+let
+    Y = R_EDGE(X) or R_EDGE(not(X));
+tel
+
+node R_EDGE (X:bool) returns (Y:bool);
+let
+    Y = false -> X and not pre(X);
+tel

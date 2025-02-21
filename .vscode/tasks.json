@@ -18,6 +18,25 @@
         "runOn": "folderOpen" // Run this task when the folder is opened
       },
       "problemMatcher": []
-    }
+    },
+    {
+      "label": "Install Lustre Extension",
+      "type": "shell",
+      "command": "code --install-extension MercierCorentin.lustre",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent",
+        "focus": false,
+        "panel": "new"
+      },
+      "runOptions": {
+        "runOn": "folderOpen" // Run this task when the folder is opened
+      },
+      "problemMatcher": []
+    },
+
   ]
 }

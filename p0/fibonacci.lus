@@ -1,0 +1,8 @@
+node Fibonacci() returns (f: int);
+var
+   f1, f2: int;
+let
+   f1 = 0 -> pre(f2); -- F(n-2)
+   f2 = 1 -> pre(f); -- F(n-1)
+   f = f1 + f2; -- F(n) = F(n-1) + F(n-2)
+tel

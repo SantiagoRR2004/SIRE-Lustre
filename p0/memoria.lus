@@ -1,0 +1,7 @@
+node Contador () returns (count: int);
+var
+   prev_count: int;
+let
+   prev_count = 0 -> pre(count);
+   count = prev_count + 1;
+tel

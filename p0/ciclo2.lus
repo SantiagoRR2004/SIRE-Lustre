@@ -1,0 +1,8 @@
+node NoCiclico2 (a: int) returns (b: int; c: int);
+   var prev_b: int; prev_c: int;
+let
+   prev_b = 0 -> pre(b);
+   prev_c = 0 -> pre(c);
+   b = prev_c + a; -- b usa el valor anterior de c
+   c = prev_b * 2; -- c usa el valor anterior de b
+tel

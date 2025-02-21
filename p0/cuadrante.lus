@@ -1,0 +1,17 @@
+node grados (angulo: int) returns (cuadrante: int);
+let
+   cuadrante =
+   -- Eje horizontal
+   if angulo = 0 or angulo = 180 or angulo = 360 then 5
+   -- Eje vertical
+   else if angulo = 90 or angulo = 270 then 5
+   -- Primer cuadrante
+   else if angulo > 0 and angulo < 90 then 0
+   -- Segundo cuadrante
+   else if angulo > 90 and angulo < 180 then 1
+   -- Tercer cuadrante
+   else if angulo > 180 and angulo < 270 then 2
+   -- Cuarto cuadrante
+   else if angulo > 270 and angulo < 360 then 3
+   else 6; -- En caso de error (fuera del rango)
+tel

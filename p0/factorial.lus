@@ -1,0 +1,9 @@
+node factorial(n: int;r:bool) returns (res: int; r2:bool);
+   var i,j: int; acc: int;
+let
+   i = if r=true then n else 1;
+   j= n-1 ->pre(n)-1;
+   r2 = true-> if n=j then false else true;
+   acc = 1 -> if n<>j then 0 else pre(res);
+   res = i * acc;
+tel;

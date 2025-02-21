@@ -1,0 +1,4 @@
+node NoCiclico3 () returns (z: int);
+let
+   z = 0 -> pre(z); -- Inicializa z en 0 en el primer ciclo
+tel

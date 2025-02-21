@@ -1,0 +1,6 @@
+node NoCiclico1 (x: int) returns (y: int);
+   var prev_y: int;
+let
+   prev_y = 0 -> pre(y);
+   y = prev_y + x; -- Ahora depende del valor del ciclo anterior
+tel

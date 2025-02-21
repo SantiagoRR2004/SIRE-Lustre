@@ -1,11 +1,12 @@
 node EDGE(X:bool) returns (Y:bool);
 let
-Y = false -> X and not pre(X);
+    Y = X -> X and not pre(X);
 tel
+
 node ABRO (A,B,R:bool) returns (O: bool);
-var seenA, seenB : bool;
+    var seenA, seenB : bool;
 let
-O = EDGE(seenA and seenB);
-seenA = false -> not R and (A or pre(seenA));
-seenB = false -> not R and (B or pre(seenB));
+    O = EDGE(seenA and seenB);
+    seenA = A and not R -> not R and (A or pre(seenA));
+    seenB = B and not R -> not R and (B or pre(seenB));
 tel

@@ -1,0 +1,11 @@
+node MOUSE(CLOCK, CLICK:bool) returns (SINGLE,DOUBLE:bool);
+let
+tel
+
+node COUNTER(CLOCK, CLICK:bool) returns (VAL:int; ENABLE:bool);
+let
+tel
+
+node EMISSION(VAL:int; ENABLE:bool) returns (SINGLE,DOUBLE:bool);
+let
+tel

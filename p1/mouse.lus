@@ -8,4 +8,6 @@ tel
 
 node EMISSION(VAL:int; ENABLE:bool) returns (SINGLE,DOUBLE:bool);
 let
+    SINGLE = ENABLE and VAL = 1;
+    DOUBLE = ENABLE and VAL > 2;
 tel

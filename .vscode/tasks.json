@@ -22,7 +22,9 @@
     {
       "label": "Install Lustre Extension",
       "type": "shell",
-      "command": "code --install-extension MercierCorentin.lustre",
+      "command": "code --install-extension kind2-mc.vscode-kind2",
+      // This is another extension: MercierCorentin.lustre
+      // But the first one is better and is more recent
       "group": {
         "kind": "build",
         "isDefault": true

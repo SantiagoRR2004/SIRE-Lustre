@@ -1,5 +1,9 @@
 node MOUSE(CLOCK, CLICK:bool) returns (SINGLE,DOUBLE:bool);
+    var VAL: int;
+    var ENABLE: bool;
 let
+    (VAL, ENABLE) = COUNTER(CLOCK, CLICK);
+    (SINGLE, DOUBLE) = EMISSION(VAL, ENABLE);
 tel
 
 node COUNTER(CLOCK, CLICK:bool) returns (VAL:int; ENABLE:bool);
@@ -33,5 +37,5 @@ tel
 node EMISSION(VAL:int; ENABLE:bool) returns (SINGLE,DOUBLE:bool);
 let
     SINGLE = ENABLE and VAL = 1;
-    DOUBLE = ENABLE and VAL > 2;
+    DOUBLE = ENABLE and VAL > 1;
 tel

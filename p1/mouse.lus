@@ -3,7 +3,31 @@ let
 tel
 
 node COUNTER(CLOCK, CLICK:bool) returns (VAL:int; ENABLE:bool);
+    var ClockCount: int;
 let
+    ClockCount = 
+        (if CLOCK then 1 else 0)
+        -> 
+        (
+            if pre(ENABLE) 
+            then (if CLOCK then 1 else 0) 
+            else 
+                (if CLOCK then pre(ClockCount) + 1 else pre(ClockCount))
+        )
+    ;
+    ENABLE = ClockCount > 1 and CLOCK;
+    VAL = 
+        (if CLICK then 1 else 0)
+        ->
+        (
+            if
+                pre(ENABLE)
+            then
+                if CLICK then 1 else 0
+            else
+                (if CLICK then pre(VAL) + 1 else pre(VAL))
+        )
+    ;
 tel
 
 node EMISSION(VAL:int; ENABLE:bool) returns (SINGLE,DOUBLE:bool);

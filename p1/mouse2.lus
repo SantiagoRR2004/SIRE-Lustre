@@ -1,0 +1,45 @@
+/*
+    This is the mouse without the CLOCK signal.
+    We always act as if it were true.
+    This is a simplification of the previous model.
+*/
+
+node MOUSE(CLICK:bool) returns (SINGLE,DOUBLE:bool);
+    var VAL: int;
+    var ENABLE: bool;
+let
+    (VAL, ENABLE) = COUNTER(CLICK);
+    (SINGLE, DOUBLE) = EMISSION(VAL, ENABLE);
+tel
+
+node COUNTER(CLICK:bool) returns (VAL:int; ENABLE:bool);
+    var ClockCount: int;
+let
+    ClockCount = 1 -> 
+        (
+            if pre(ENABLE) 
+            then 1 
+            else 
+                (pre(ClockCount) + 1)
+        )
+    ;
+    ENABLE = ClockCount > 1;
+    VAL = 
+        (if CLICK then 1 else 0)
+        ->
+        (
+            if
+                pre(ENABLE)
+            then
+                if CLICK then 1 else 0
+            else
+                (if CLICK then pre(VAL) + 1 else pre(VAL))
+        )
+    ;
+tel
+
+node EMISSION(VAL:int; ENABLE:bool) returns (SINGLE,DOUBLE:bool);
+let
+    SINGLE = ENABLE and VAL = 1;
+    DOUBLE = ENABLE and VAL > 1;
+tel

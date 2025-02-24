@@ -1,4 +1,7 @@
+lv6-bin-dist/
 *.c
 *.h
 *.exec
-main.sh
+*.sh
+# Exclude Lustre_installer.sh from being ignored
+!Lustre_installer.sh

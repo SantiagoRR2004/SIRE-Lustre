@@ -19,7 +19,7 @@ let
                 (if CLOCK then pre(ClockCount) + 1 else pre(ClockCount))
         )
     ;
-    ENABLE = ClockCount > 1 and CLOCK;
+    ENABLE = ClockCount > 1 and CLOCK; -- Here is we you change the number of clocks of a cycle
     VAL = 
         (if CLICK then 1 else 0)
         ->

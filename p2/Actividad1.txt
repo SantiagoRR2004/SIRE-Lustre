@@ -1,0 +1,13 @@
+¿Qué ocurre si, además de pulsar el botón en el ciclo 1 y 7, también
+se pulsa el botón en el ciclo 3?
+
+Al pulsar el botón, la fase vuelve a pasar a la fase 1, independientemente de la fase anterior. 
+No está implementada la regla de que el botón sólo afecte cuando el semáforo está en verde.
+Que se pulse el botón en el ciclo 3, no debería afectar.
+
+Explicar qué está ocurriendo en el código de Lustre.
+El problema en el código está en el if de Fase:
+Fase =
+        if BOTON then 1
+Provoca que siempre que se pulse el botón, vuelva a la fase 1.
+Esto provoca el comportamiento erróneo de volver al amarillo.

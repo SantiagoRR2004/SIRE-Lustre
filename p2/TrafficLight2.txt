@@ -1,0 +1,14 @@
+Ahora hay nuevos problemas que aparecen:
+
+    - Si pulsas en el ciclo 0 no pasa a amarillo en el siguiente ciclo.
+    - Sigue pasando inmediatamente a amarillo cuando se pulsa el botón.
+    - Cada vez que se pulsa el botón se resetea al amarillo excepto durante la fase 4 del semáforo.
+
+
+Explicación sobre lo que ocurre:
+
+En el ciclo cero el semáforo estará siempre en verde porque los valores iniciales hacen que Fase vaya por los dos elses y sea 0.
+
+Si se pulsa el botón una sola vez en otro momento el ciclo funciona con normalidad aunque pasa inmediatamente al amarillo. La Fase se va sumando uno hasta que llega a 5 y se resetea a 0. El semáforo funciona como debería.
+
+Si se pulsa en cualquier momento que no sea el ciclo 0 o la fase 4 el semáforo se resetea al amarillo. Esto es porque la Fase se resetea a 1 y el semáforo pasa a amarillo.

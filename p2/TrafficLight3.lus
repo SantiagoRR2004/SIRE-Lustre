@@ -1,4 +1,4 @@
-node TrafficLight2(BOTON:bool) returns (GREEN, YELLOW, RED, WALK, DONTWALK: bool);
+node TrafficLight3(BOTON:bool) returns (GREEN, YELLOW, RED, WALK, DONTWALK: bool);
     var Fase, preFase: int;
 let
     preFase = 0 -> pre(Fase);

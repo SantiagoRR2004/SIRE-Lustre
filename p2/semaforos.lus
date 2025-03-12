@@ -1,0 +1,20 @@
+node SEMAFORO(carSensor:bool) returns (GREEN, YELLOW, RED, GREEN2, YELLOW2, RED2: bool);
+-- Las primeras luces es el semáforo principal, el otro es del sensor
+    var Fase, preFase: int;
+let
+    preFase = 0 -> pre(Fase);
+    Fase = 
+        if false -> (pre(carSensor) and pre(GREEN)) then 1
+        else
+            if 0 < preFase and preFase < 8 then preFase + 1
+            else 0;
+    GREEN = Fase = 0; --Hasta que no se detecte un coche (se pase a Fase 1), está en verde.
+    YELLOW = Fase = 1;
+    RED = Fase > 1;  --Hasta que no se reinicie, en rojo.
+    GREEN2 = Fase >= 3 and Fase <= 6; -- Verde durante 4 fases. se activa un ciclo después de que el otro se pusiera en rojo.
+    YELLOW2 = Fase = 7;
+    RED2 = Fase < 3 or Fase = 8; -- Está en rojo si el principal está en verde o amarillo y un segundo después de que el otro se ponga a rojo
+    --[or Fase = 8] sirve para que esté un segundo en rojo antes de que se ponga en verde el principal.
+    -- No pueden estar en verde al mismo tiempo
+    assert not (GREEN and GREEN2);
+tel

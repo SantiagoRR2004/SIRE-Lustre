@@ -7,8 +7,21 @@ Ahora hay nuevos problemas que aparecen:
 
 Explicación sobre lo que ocurre:
 
-En el ciclo cero el semáforo estará siempre en verde porque los valores iniciales hacen que Fase vaya por los dos elses y sea 0.
+En el ciclo cero, el semáforo estará siempre en verde porque los valores iniciales hacen que Fase vaya por los dos elses y sea 0.
 
-Si se pulsa el botón una sola vez en otro momento el ciclo funciona con normalidad aunque pasa inmediatamente al amarillo. La Fase se va sumando uno hasta que llega a 5 y se resetea a 0. El semáforo funciona como debería.
+Si se pulsa el botón una sola vez en otro momento, el ciclo funciona con normalidad aunque pasa inmediatamente al amarillo. La
+Fase se va sumando uno hasta que la preFase llega a 4 y se resetea la Fase a 0. En este caso, en el que el botón se pulsa una vez
+hasta que se resetea Fase, funciona perfectamente.
 
-Si se pulsa en cualquier momento que no sea el ciclo 0 o la fase 4 el semáforo se resetea al amarillo. Esto es porque la Fase se resetea a 1 y el semáforo pasa a amarillo.
+Si se pulsa en cualquier momento que no sea el ciclo 0 o la fase 4 el semáforo se resetea al amarillo. Esto es porque la Fase se
+resetea a 1 y el semáforo pasa a amarillo.
+
+SOLUCIÓN:
+Debemos cambiar el if inicial de Fase (if BOTON and (false -> pre(DONTWALK)) then 1).
+
+La solución radica en que se pase a Fase 1 cuando se ha pulsado el botón en el ciclo anterior y el semáforo estaba en verde en ese
+ciclo. Con esto nos aseguramos que no pase abruptamente al amarillo cuando estaba en rojo o se quede en amarillo. Además de evitar 
+que pulsar el botón en el ciclo 0 sea inútil.
+
+La condición cambiada sería:
+Fase = if false -> (pre(BOTON) and pre(GREEN)) then 1

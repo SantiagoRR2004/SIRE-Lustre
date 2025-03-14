@@ -1,0 +1,4 @@
+function suma(a, b: int) returns (c: int);
+let
+    c = a + b;
+tel

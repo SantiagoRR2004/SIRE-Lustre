@@ -1,5 +1,8 @@
 lv6-bin-dist/
-*.c
+lustre_consts.c
+*_*_loop_io.c
+*_*_loop.c
+*_*.c
 *.h
 *.exec
 *.sh

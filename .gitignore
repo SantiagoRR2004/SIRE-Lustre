@@ -6,5 +6,6 @@ lustre_consts.c
 *.h
 *.exec
 *.sh
+*.o
 # Exclude Lustre_installer.sh from being ignored
 !Lustre_installer.sh

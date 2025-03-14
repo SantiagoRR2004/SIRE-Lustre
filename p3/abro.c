@@ -13,36 +13,35 @@ int main()
     // Simulación de interacción con el usuario
     while (true)
     {
+        A = false; // Reiniciar la señal A
+        B = false; // Reiniciar la señal B
+        R = false; // Reiniciar el reset
         // Solicitar al usuario qué señal desea enviar
-        char opcion;
+        char opcion[3];
         printf("¿Qué señal desea enviar? (a = A, b = B, r = Reset, s = salir): ");
-        scanf(" %c", &opcion);
-        if (opcion == "a")
+
+        // El único problema es que si es un enter vacío, no reacciona
+        scanf("%3s", opcion);
+
+        // Vaciar el buffer de entrada
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);  
+
+        if (strchr(opcion, 'a') != NULL)
         { // Activar la señal A
             A = true;
-            B = false; // Reiniciar la señal B
-            R = false; // Reiniciar el reset
         }
-        else if (opcion == "b")
+        if (strchr(opcion, 'b') != NULL)
         { // Activar la señal B
             B = true;
-            A = false; // Reiniciar la señal A
-            R = false; // Reiniciar el reset
         }
-        else if (opcion == "r")
+        if (strchr(opcion, 'r') != NULL)
         { // Activar el reset
             R = true;
-            A = false; // Reiniciar la señal A
-            B = false; // Reiniciar la señal B
         }
-        else if (opcion == "s")
+        if (strchr(opcion, 's') != NULL)
         { // Salir del programa
             break;
-        }
-        else
-        {
-            printf("Opción no válida.\n");
-            continue;
         }
         // Llamar a la función principal de ABRO
         abro_ABRO_step(A, B, R, &O, &abro_ctx);

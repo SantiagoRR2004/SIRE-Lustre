@@ -1,3 +1,10 @@
+/*
+lv6 p3/reloj.lus -node RELOJ -cc -dir p3 &&
+gcc -c p3/reloj_RELOJ.c -o p3/reloj_RELOJ.o &&
+gcc -c p3/reloj.c -o p3/reloj.o &&
+gcc p3/reloj_RELOJ.o p3/reloj.o -o p3/programa_reloj &&
+p3/programa_reloj
+*/
 #include <stdio.h>
 #include <stdbool.h>
 #include "reloj_RELOJ.h" // Incluir el archivo de cabecera generado

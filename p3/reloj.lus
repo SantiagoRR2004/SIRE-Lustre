@@ -1,4 +1,4 @@
-node RELOJ(hora, minuto, segundo: int) returns (tiempo: int);
+function RELOJ(hora, minuto, segundo: int) returns (tiempo: int);
 let
     tiempo = ((hora - 12) mod 24) * 3600 + minuto * 60 + segundo;
     assert hora >= 0 and hora < 24;

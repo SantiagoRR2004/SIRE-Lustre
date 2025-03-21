@@ -1,19 +1,28 @@
+/*
+lv6 p3/reloj2.lus -node RELOJ -cc -dir p3 &&
+gcc -c p3/reloj2_RELOJ.c -o p3/reloj2_RELOJ.o &&
+gcc -c p3/reloj2.c -o p3/reloj2.o &&
+gcc p3/reloj2_RELOJ.o p3/reloj2.o -o p3/programa_reloj2 &&
+p3/programa_reloj2
+*/
 #include <stdio.h>
 #include <stdbool.h>
-#include "reloj_RELOJ.h"
+#include "reloj2_RELOJ.h"
 
-int main() {
+int main()
+{
     // Variables de entrada y salida
-    _boolean hora_signal = false;    
-    _boolean minuto_signal = false;  
-    _boolean segundo_signal = false; 
+    _boolean hora_signal = false;
+    _boolean minuto_signal = false;
+    _boolean segundo_signal = false;
     int nueva_hora = 12, nuevo_minuto = 0, nuevo_segundo = 0;
     int tiempo = 0;
-    char opcion[3];         
-    reloj_RELOJ_ctx_type reloj_ctx; 
-    reloj_RELOJ_ctx_reset(&reloj_ctx);
+    char opcion[3];
+    reloj2_RELOJ_ctx_type reloj_ctx;
+    reloj2_RELOJ_ctx_reset(&reloj_ctx);
 
-    while (true) {
+    while (true)
+    {
         printf("Hora actual: %d:%d:%d\n", nueva_hora, nuevo_minuto, nuevo_segundo);
         printf("Segundos desde el mediodía: %d\n", tiempo);
         printf("Seleccione una opción:\n");
@@ -21,11 +30,12 @@ int main() {
         printf("m = Cambiar el minuto\n");
         printf("s = Cambiar el segundo\n");
         printf("q = Salir\n\n");
-        
+
         scanf("%3s", opcion);
         // Vaciar el buffer de entrada
         int c;
-        while ((c = getchar()) != '\n' && c != EOF);  
+        while ((c = getchar()) != '\n' && c != EOF)
+            ;
 
         if (strchr(opcion, 'h') != NULL)
         { // Activar hora_signal
@@ -52,9 +62,9 @@ int main() {
         { // Salir del programa
             break;
         }
-        reloj_RELOJ_step(hora_signal, minuto_signal, segundo_signal,
-        nueva_hora, nuevo_minuto, nuevo_segundo,
-        &tiempo, &reloj_ctx);
+        reloj2_RELOJ_step(hora_signal, minuto_signal, segundo_signal,
+                          nueva_hora, nuevo_minuto, nuevo_segundo,
+                          &tiempo, &reloj_ctx);
         hora_signal = minuto_signal = segundo_signal = false;
     }
     return 0;

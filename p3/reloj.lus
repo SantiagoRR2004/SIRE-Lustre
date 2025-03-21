@@ -1,7 +1,0 @@
-node RELOJ(hora, minuto, segundo: int) returns (tiempo: int);
-let
-    tiempo = ((hora - 12) mod 24) * 3600 + minuto * 60 + segundo;
-    assert hora >= 0 and hora < 24;
-    assert minuto >= 0 and minuto < 60;
-    assert segundo >= 0 and segundo < 60;
-tel

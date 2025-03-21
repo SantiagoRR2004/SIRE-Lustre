@@ -13,6 +13,8 @@ function inicializar() returns (array: array_sensores);
             sensor(3, 28.3)
         ];
     tel;
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 function temperatura_media1(array: array_sensores) returns (media: real);
     var
         suma: real;
@@ -72,4 +74,57 @@ node main() returns (media1, media2, media3, media4: real);
         media2=temperatura_media2(array);
         media3=temperatura_media3(array);
         media4=temperatura_media4(array);
+    tel;
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+function filtro_temperatura28(s: sensorTemp) returns (b:bool);
+    let
+        b = s.temperatura > 28.0;
+    tel;
+node acumular_temp_filtrados(acumTemp: real; s: sensorTemp) returns (acc_temp: real; y:sensorTemp);
+    let
+        acc_temp = if filtro_temperatura28(s) then acumTemp + s.temperatura
+            else acumTemp;
+        y=s;
+    tel;
+node acumular_elem_filtrados(acumElem: real; s: sensorTemp) returns (acc_elem: real);
+    let
+        acc_elem = if filtro_temperatura28(s) then acumElem + 1.0
+        else acumElem;
+    tel;
+node filtrar_sensores(array: array_sensores) returns (media:real; a_filtrado:array_sensores);
+    var
+        suma:real;
+        num:real;
+    let
+        (suma, a_filtrado) = fillred<<acumular_temp_filtrados, 3>>(0.0, array);
+        num = red<<acumular_elem_filtrados, 3>>(0.0, a_filtrado);
+        media = suma / num;
+    tel;
+node main2() returns (val:real; array2:array_sensores);
+    var
+        array: array_sensores;
+    let
+        array=inicializar();
+        (val,array2)=filtrar_sensores(array);
+    tel;
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+node es_impar(s: sensorTemp) returns (s1:sensorTemp);
+    var
+        impar:bool;
+    let
+        impar = (s.id mod 2) <> 0;
+        s1 = if impar then sensor(s.id,s.temperatura + 2.0) else s;
+    tel;
+node modificar_sensores_impares(array: array_sensores) returns (a_modif:array_sensores);
+    let
+        a_modif = map<<es_impar, 3>>(array);
+    tel;
+node main3() returns (array3:array_sensores);
+    var
+        array: array_sensores;
+    let
+        array=inicializar();
+        array3=modificar_sensores_impares(array);
     tel;

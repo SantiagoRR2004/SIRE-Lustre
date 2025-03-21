@@ -2,11 +2,11 @@ node RELOJ(hora_signal, minuto_signal, segundo_signal: bool;
 nueva_hora, nuevo_minuto, nuevo_segundo: int) returns (tiempo: int);
 var hora, minuto, segundo, horas_en_segundos, abs_horas_en_segundos : int;
 let
-    hora = if hora_signal then nueva_hora else 0 -> pre(hora);
+    hora = if hora_signal then (nueva_hora) else 0 -> pre(hora);
     minuto = if minuto_signal then nuevo_minuto else 0 -> pre(minuto);
     segundo = if segundo_signal then nuevo_segundo else 0 -> pre(segundo);
 
-    horas_en_segundos = ((hora - 12) mod 24) * 3600;
+    horas_en_segundos = if hora < 12 and hora > 0 then ((hora + 12) mod 24) * 3600 else ((hora - 12) mod 24) * 3600;
     abs_horas_en_segundos = if horas_en_segundos < 0 then -horas_en_segundos else horas_en_segundos;
 
     tiempo = abs_horas_en_segundos + minuto * 60 + segundo;

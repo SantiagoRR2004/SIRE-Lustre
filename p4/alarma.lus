@@ -23,8 +23,11 @@ node activar_alarma(clk_rapido: bool;
         temp_sincronizada = current(temp) when clk_lento;
         -- La alarma se activa si ambos relojes están activos y la
         -- temperatura sincronizada es mayor a 28
+        -- ACTIVIDAD: La temperatura sube más de 15 grados en un ciclo
         clock_lento = merge clk_lento
-                            (true->temp_sincronizada>28.0)
+                            (true->temp_sincronizada>28.0 or
+                                    (temp_sincronizada - pre(temp_sincronizada)>15.0)
+                            )
                             (false->false);
         clock_rapido = merge clk_rapido
                             (true->true)

@@ -1,3 +1,10 @@
+/*
+lv6 p3/abro.lus -node ABRO -cc -dir p3 &&
+gcc -c p3/abro_ABRO.c -o p3/abro_ABRO.o &&
+gcc -c p3/abro.c -o p3/abro.o &&
+gcc p3/abro_ABRO.o p3/abro.o -o p3/programa_abro &&
+p3/programa_abro
+*/
 #include <stdio.h>
 #include <stdbool.h>
 #include "abro_ABRO.h" // Incluir el archivo de cabecera generado

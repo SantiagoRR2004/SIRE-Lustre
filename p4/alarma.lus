@@ -26,7 +26,7 @@ node activar_alarma(clk_rapido: bool;
         -- ACTIVIDAD: La temperatura sube más de 15 grados en un ciclo
         clock_lento = merge clk_lento
                             (true->temp_sincronizada>28.0 or
-                                    (temp_sincronizada - pre(temp_sincronizada)>15.0)
+                                    false -> (temp_sincronizada - pre(temp_sincronizada)>15.0)
                             )
                             (false->false);
         clock_rapido = merge clk_rapido

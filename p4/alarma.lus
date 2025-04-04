@@ -39,7 +39,7 @@ node activar_alarma(clk_rapido: bool;
         -- Aplicamos la misma lógica para la humedad
         -- Con que una de las condiciones se cumpla, la alarma se activa
         clock_lento = merge clk_lento
-                            (true->(temp_sincronizada>2800.0 or
+                            (true->(temp_sincronizada>28.0 or
                                     false -> (temp_sincronizada - pre(temp_sincronizada)>15.0))
                                     or
                                     (hum_sincronizada>40.0 or
